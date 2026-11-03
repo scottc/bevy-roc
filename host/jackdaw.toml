@@ -6,7 +6,7 @@
 plugin = "GamePlugin"
 
 # In a cargo workspace, the member jackdaw builds as the game.
-package = "bevy-roc-host"  # must match Cargo.toml
+package = "host"  # must match Cargo.toml
 
 # Recorded when this project was set up. Jackdaw compares these on
 # open so an editor upgrade is reported instead of surfacing as a
