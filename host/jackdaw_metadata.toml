@@ -1,0 +1,34 @@
+["bevy_transform::components::transform::Transform"]
+description = """
+Describe the position of an entity. If the entity has a parent, the position is relative
+ to its parent position.
+
+ * To place or move an entity, you should set its [`Transform`].
+ * To get the global transform of an entity, you should get its [`GlobalTransform`].
+ * To be displayed, an entity must have both a [`Transform`] and a [`GlobalTransform`].
+   [`GlobalTransform`] is automatically inserted whenever [`Transform`] is inserted.
+
+ Transforms compose from right to left: if `t1` and `t2` are transforms, then `t1 * t2`
+ corresponds to applying `t2` *first*, *then* applying `t1`.
+
+ ## [`Transform`] and [`GlobalTransform`]
+
+ [`Transform`] is the position of an entity relative to its parent position, or the reference
+ frame if it doesn't have a [`ChildOf`](bevy_ecs::hierarchy::ChildOf) component.
+
+ [`GlobalTransform`] is the position of an entity relative to the reference frame.
+
+ [`GlobalTransform`] is updated from [`Transform`] in the [`TransformSystems::Propagate`]
+ system set.
+
+ This system runs during [`PostUpdate`](bevy_app::PostUpdate). If you
+ update the [`Transform`] of an entity during this set or after, you will notice a 1 frame lag
+ before the [`GlobalTransform`] is updated.
+
+ [`TransformSystems::Propagate`]: crate::TransformSystems::Propagate
+
+ # Examples
+
+ - [`transform`][transform_example]
+
+ [transform_example]: https://github.com/bevyengine/bevy/blob/latest/examples/transforms/transform.rs"""
