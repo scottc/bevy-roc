@@ -1,6 +1,15 @@
+> [!IMPORTANT]
+> In development, WIP.
+
 # Bevy-Roc
 
+Roc language bindings for Bevy Game Engine.
+
 ## About
+
+Lets you use use roc to write bevy game logic, while Bevy handles processing game entities & rendering. And Jackdaw handles scene editing & development tooling.
+
+![Bevy-Roc Screenshot](brand/Screenshot_20261104_011826.png)
 
 ## Workflow
 
