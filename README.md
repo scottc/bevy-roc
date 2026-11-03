@@ -2,7 +2,25 @@
 
 ## About
 
-## Open Jackdaw Scene Editor
+## Workflow
+
+Jackdaw editor owns the build process, so we can have full intergration.
+
+```
+Jackdaw Build / Play
+        │
+        ▼
+cargo build -p roc-bevy-host
+        │
+        ▼
+host/build.rs  → roc build →  target/roc/libapp.a
+        │
+        ▼
+rustc links Bevy host + libapp.a
+        │
+        ▼
+Play runs that binary (IPC + maybe_windowless)
+```
 
 Install Jackdaw, rustup, rust, roc & zig:
 ```sh
@@ -14,6 +32,7 @@ New Jackdaw project:
 jd new host
 ```
 
+...
 ```sh
 nix run github:lukewilliamboswell/roc-blueprint/0.11.0 -- run rustup-default
 nix run github:lukewilliamboswell/roc-blueprint/0.11.0 -- run jackdaw-import
@@ -26,9 +45,4 @@ nix run github:lukewilliamboswell/roc-blueprint/0.11.0 -- run jackdaw-build
 
 # Open the editor...
 nix run github:lukewilliamboswell/roc-blueprint/0.11.0 -- run jackdaw-open
-```
-
-## Build & Run
-```
-nix run github:lukewilliamboswell/roc-blueprint/0.11.0 -- run build-platform
 ```

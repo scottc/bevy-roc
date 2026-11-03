@@ -516,6 +516,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy-roc-host"
+version = "0.1.0"
+dependencies = [
+ "avian3d",
+ "bevy",
+ "jackdaw_avian_integration",
+ "jackdaw_runtime",
+]
+
+[[package]]
 name = "bevy_a11y"
 version = "0.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3433,16 +3443,6 @@ dependencies = [
  "constgebra",
  "glam 0.33.12",
  "tinyvec",
-]
-
-[[package]]
-name = "host"
-version = "0.1.0"
-dependencies = [
- "avian3d",
- "bevy",
- "jackdaw_avian_integration",
- "jackdaw_runtime",
 ]
 
 [[package]]

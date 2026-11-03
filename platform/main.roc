@@ -3,7 +3,7 @@ platform ""
         init! : {} => Model,
         frame! : Model, F32 => FrameOut,
     }
-    exposes []
+    exposes [Model,Rgba,FrameOut]
     packages {}
     provides {
         "roc_init": init_for_host!,
@@ -12,20 +12,17 @@ platform ""
     hosted {}
     targets: {
         inputs_dir: "targets/",
-        x64musl: { inputs: ["libhost.a", app] },
-        arm64musl: { inputs: ["libhost.a", app] },
-        x64mac: { inputs: ["libhost.a", app] },
-        arm64mac: { inputs: ["libhost.a", app] },
+        x64glibc: { inputs: [app], output: Archive },
+        # x64musl: { inputs: ["libhost.a", app] },
+        # arm64musl: { inputs: ["libhost.a", app] },
+        # x64mac: { inputs: ["libhost.a", app] },
+        # arm64mac: { inputs: ["libhost.a", app] },
     }
 
-Model : { t : F32 }
-
-Rgba : { r : F32, g : F32, b : F32, a : F32 }
-
-FrameOut : {
-    model : Model,
-    clear_color : Rgba,
-}
+import Host
+import Model
+import FrameOut
+import Rgba
 
 init_for_host! : () => Model
 init_for_host! = || init!({})

@@ -241,15 +241,15 @@
 						(name "locked")
 						(value (Attrs ((
 							(name "lastModified")
-							(value (Int 1793613733))) (
+							(value (Int 1793697978))) (
 							(name "narHash")
-							(value (Str "sha256-DWtCfLHeGMpcDT2SKPZ8wM0Tut0gzMXZbdCJ0BGQ1ow="))) (
+							(value (Str "sha256-a8m7C9dcWOLUuSy7UstsAysE+KTQWt7gmXCZVj4LkbQ="))) (
 							(name "owner")
 							(value (Str "roc-lang"))) (
 							(name "repo")
 							(value (Str "roc-overlay"))) (
 							(name "rev")
-							(value (Str "3f10c51e5045fb09168242b373685646fbf49c97"))) (
+							(value (Str "dc0a8822bba3618f51bf8e656efbf6484ff98f0b"))) (
 							(name "type")
 							(value (Str "github"))))))) (
 						(name "original")
@@ -283,15 +283,15 @@
 						(name "locked")
 						(value (Attrs ((
 							(name "lastModified")
-							(value (Int 1793610678))) (
+							(value (Int 1793697474))) (
 							(name "narHash")
-							(value (Str "sha256-5V08BokWHSUU962Kcr/uSTWyy+1NqB7pjuyqjqXTqQU="))) (
+							(value (Str "sha256-KgJnMIR0ltd7pMcpDWn5q40bzmC7xtlb71clPFNUu+Y="))) (
 							(name "owner")
 							(value (Str "oxalica"))) (
 							(name "repo")
 							(value (Str "rust-overlay"))) (
 							(name "rev")
-							(value (Str "6b29b8e8d3cc8ebda9342fbbcc7ac06eff58e2fb"))) (
+							(value (Str "fb3eee9d296214ebbcc53921f34e80bb4166e859"))) (
 							(name "type")
 							(value (Str "github"))))))) (
 						(name "original")
@@ -329,16 +329,16 @@
 		(provider "nix")
 		(ref "github:NixOS/nixpkgs/nixos-unstable")
 		(rev "0bb2eedc20e4739f29e8045034f2828ad7054f8f")) (
-		(digest "sha256:0d6b427cb1de18ca5c0d3d9228f67cc0cd13badd20ccc5d96dd089d01190d68c")
+		(digest "sha256:6bc9bb0bd75c58e2d4b92cbb52cb6c032b04f8a4d05adee0997099563e0b91b4")
 		(name "roc")
 		(provider "nix")
 		(ref "github:roc-lang/roc-overlay")
-		(rev "3f10c51e5045fb09168242b373685646fbf49c97")) (
-		(digest "sha256:e55d3c0689161d2514f7ad8a72bfee4935b2cbed4da81ee98eecaa8ea5d3a905")
+		(rev "dc0a8822bba3618f51bf8e656efbf6484ff98f0b")) (
+		(digest "sha256:2a026730847496d77ba4c7290d69f9ab8d1bce60bbc6d95bef57253c5354bbe6")
 		(name "rust")
 		(provider "nix")
 		(ref "github:oxalica/rust-overlay")
-		(rev "6b29b8e8d3cc8ebda9342fbbcc7ac06eff58e2fb")) (
+		(rev "fb3eee9d296214ebbcc53921f34e80bb4166e859")) (
 		(digest "sha256:ece6d6379491754fac6b882f9d628e4bcf432e64c343ec0edf3d6f5d4e0223f5")
 		(name "jackdaw-nix")
 		(provider "nix")

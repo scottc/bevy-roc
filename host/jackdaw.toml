@@ -3,10 +3,10 @@
 
 # Optional name of your game's root Bevy Plugin (for setup / `jd doctor`).
 # Play runs your cargo binary; add the plugin from `main.rs`.
-# plugin = "GamePlugin"
+plugin = "GamePlugin"
 
 # In a cargo workspace, the member jackdaw builds as the game.
-# package = "my-game"
+package = "bevy-roc-host"  # must match Cargo.toml
 
 # Recorded when this project was set up. Jackdaw compares these on
 # open so an editor upgrade is reported instead of surfacing as a

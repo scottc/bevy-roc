@@ -1,8 +1,8 @@
 [package]
-name = "host"
+name = "bevy-roc-host"
 version = "0.1.0"
 edition = "2024"
-authors = ["scottc <scottc@users.noreply.github.com>"]
+build = "build.rs"
 
 # jackdaw builds its editor artifacts in .jackdaw/ and edits this manifest
 # only when you change the project's modules; `cargo run` works with or
