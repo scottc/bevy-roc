@@ -72,6 +72,7 @@ config = [
     Task("cargo-version", [Use("dev"), Run(["cargo", "--version"])]),
 
     # Host crate lives under host/
+    Task("gen-glue", [Use("dev"), Run(["bash", "scripts/gen_rust_glue.sh"])]),
     Task("cargo-check", [Use("dev"), Run(["cargo", "check", "-p", "host"])]),
     Task("build-host", [Use("dev"), Run(["cargo", "build", "-p", "host"])]),
     Task(
@@ -102,11 +103,7 @@ config = [
         "jackdaw-open",
         [
             Use("dev"),
-            Run([
-                "sh",
-                "-c",
-                "XKB=`pkg-config --variable=libdir xkbcommon 2>/dev/null`; WL=`pkg-config --variable=libdir wayland-client 2>/dev/null`; export LD_LIBRARY_PATH=\"/run/opengl-driver/lib:$XKB:$WL:$LD_LIBRARY_PATH\"; exec jd open host",
-            ]),
+            Run(["bash", "scripts/jackdaw_open.sh"]),
         ],
     ),
     Task("jackdaw-build", [Use("dev"), Run(["jd", "build", "--project", "host"])]),

@@ -1,5 +1,6 @@
 app [init!, frame!] { pf: platform "../../platform/main.roc" }
 
+import pf.Stdout
 import pf.Model
 import pf.FrameOut
 import pf.Rgba
@@ -12,6 +13,8 @@ init! = |_| { t: 0.0 }
 
 frame! : Model, F32 => FrameOut
 frame! = |model, dt| {
+    Stdout.line!("frame t=${model.t.to_str()}")
+
     t = model.t + dt
     s = (t + 1.0) / 2.0
     {

@@ -3,13 +3,15 @@ platform ""
         init! : {} => Model,
         frame! : Model, F32 => FrameOut,
     }
-    exposes [Model,Rgba,FrameOut]
+    exposes [Model, Rgba, FrameOut, Stdout]
     packages {}
     provides {
         "roc_init": init_for_host!,
         "roc_frame": frame_for_host!,
     }
-    hosted {}
+    hosted {
+        "roc_stdout_line": Host.roc_stdout_line!
+    }
     targets: {
         inputs_dir: "targets/",
         x64glibc: { inputs: [app], output: Archive },
@@ -20,6 +22,7 @@ platform ""
     }
 
 import Host
+import Stdout
 import Model
 import FrameOut
 import Rgba

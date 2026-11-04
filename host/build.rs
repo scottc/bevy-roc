@@ -13,17 +13,25 @@ fn main() {
     println!("cargo:rerun-if-changed={}", root.join("platform").display());
     println!("cargo:rerun-if-changed={}", root.join("app").display());
 
-    let status = Command::new("roc-stable")
+    // host/.bin/roc-stable
+    let roc = roc_bin(&manifest_dir);
+
+    let status = Command::new(&roc)
         .arg("build")
         .arg(format!("--output={}", out_lib.display()))
         .arg("--target=x64glibc")
         .arg(app_main.to_str().unwrap())
         .current_dir(&root)
         .status()
-        .expect("spawn roc-stable");
+        .unwrap_or_else(|e| {
+            panic!(
+                "roc-stable not runnable from build.rs ({e}). \
+                 Launch jackdaw via Blueprint so roc-stable is on PATH."
+            );
+        });
 
     if !status.success() {
-        panic!("roc-stable build failed: {status}");
+        panic!("roc build failed: {status}");
     }
 
     // Adjust if Roc names the archive differently
@@ -47,4 +55,19 @@ fn main() {
 
     println!("cargo:rustc-link-search=native={}", search.display());
     println!("cargo:rustc-link-lib=static={name}");
+    println!("cargo:rustc-link-arg=-no-pie");
+}
+
+fn roc_bin(manifest_dir: &std::path::Path) -> std::path::PathBuf {
+    let local = manifest_dir.join(".bin/roc-stable");
+    if local.is_file() {
+        return local;
+    }
+    if let Ok(p) = std::env::var("ROC") {
+        let p = std::path::PathBuf::from(p);
+        if p.is_file() {
+            return p;
+        }
+    }
+    "roc-stable".into()
 }

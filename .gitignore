@@ -2,3 +2,6 @@
 platform/targets/x64musl/
 target/roc/
 target/
+.cache/glue/bad769b/
+host/src/glue_out/
+host/.bin/

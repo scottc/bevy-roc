@@ -22,13 +22,18 @@
 //! save, click Rebuild in jackdaw (or run `jd build`) and it
 //! appears in `Add Component`. No registration code is needed.
 
-mod roc_ffi;
+//mod roc_ffi;
+
+#[path = "glue_out/roc_platform_abi.rs"]
+#[allow(dead_code, improper_ctypes, improper_ctypes_definitions, unexpected_cfgs)]
+mod roc_platform_abi;
+mod roc_host_runtime;
 
 use bevy::prelude::*;
 use jackdaw_runtime::prelude::*;
-use roc_ffi::{roc_frame, roc_init, FrameOut, Model};
+use roc_platform_abi::{roc_frame, roc_init, FrameOut, Model};
 
-#[derive(Resource, Debug, Clone, Copy)]
+#[derive(Resource, Clone, Copy)]
 pub struct RocModel(pub Model);
 
 /// Your game's Bevy plugin. `main.rs` adds this for both `cargo run`
@@ -38,15 +43,20 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
-        app.insert_resource(ClearColor(Color::srgb(0.1, 0.1, 0.15)))
+        app
+            .insert_resource(ClearColor(Color::srgb(0.1, 0.1, 0.15)))
             .add_systems(Startup, (init_roc, spawn_scene).chain())
-            .add_systems(Update, (roc_frame_system, spin_cubes));
+            .add_systems(Update, (
+                //roc_frame_system,
+                spin_cubes
+            ));
     }
 }
 
 fn init_roc(mut commands: Commands) {
-    // SAFETY: linked Roc app must export roc_init with this ABI.
+    eprintln!("[host] before roc_init");
     let model = unsafe { roc_init() };
+    eprintln!("[host] after roc_init");
     commands.insert_resource(RocModel(model));
 }
 
@@ -63,11 +73,13 @@ fn roc_frame_system(
     mut clear_color: ResMut<ClearColor>,
 ) {
     let dt = time.delta_secs();
-    // SAFETY: linked Roc app must export roc_frame with this ABI.
+
+    eprintln!("[host] before roc_frame");
     let FrameOut {
         model: next,
         clear_color: rgba,
     } = unsafe { roc_frame(model.0, dt) };
+    eprintln!("[host] after roc_frame");
 
     model.0 = next;
     clear_color.0 = Color::srgba(rgba.r, rgba.g, rgba.b, rgba.a);
