@@ -38,8 +38,9 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Startup, spawn_scene)
-            .add_systems(Update, spin_cubes);
+        app.insert_resource(ClearColor(Color::srgb(0.1, 0.1, 0.15)))
+            .add_systems(Startup, (init_roc, spawn_scene).chain())
+            .add_systems(Update, (roc_frame_system, spin_cubes));
     }
 }
 
